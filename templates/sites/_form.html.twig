@@ -1,0 +1,5 @@
+<!-- Pour afficher le formulaire, on utilise la fonction form et on lui indique le nom du formulaire présent dans le controller-->
+{{ form_start(form) }}
+    {{ form_widget(form) }}
+    <input class="btn btn-primary btn-block" type="submit" value="{{submitButtonText}}" formnovalidate>
+{{ form_end(form) }}

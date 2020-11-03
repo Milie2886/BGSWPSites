@@ -1,0 +1,14 @@
+{% extends 'layouts/base.html.twig' %}
+
+{% block title 'Nouveau site' %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            <h1>Ajouter un site</h1>
+            <!--Ici on charge notre formulaire qu'on a isolé pour éviter les répétitions-->
+            {{ include('sites/_form.html.twig', {'submitButtonText': 'Ajouter'}) }}
+        </div>
+    </div>
+
+{% endblock %}

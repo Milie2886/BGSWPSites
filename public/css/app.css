@@ -1,0 +1,17 @@
+html, body {
+    font-family: 'Open Sans', sans-serif;
+}
+.alert {
+    padding: 10px;
+    color: black;
+    text-align: center;
+}
+.alert-success {
+    background-color:rgb(80, 255, 168);
+}
+.alert-danger {
+    background-color:#F15A5B;
+}
+.alert-info {
+    background-color: rgb(78, 127, 241);
+}

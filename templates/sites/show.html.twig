@@ -1,0 +1,38 @@
+{% extends 'layouts/base.html.twig' %}
+{% block title site.name %}
+
+{% block body %}
+<div class="row">
+    <div class="col-md-3">
+        <h2>{{ site.name }}</h2>
+        <p><strong>Url : </strong><a href="{{ site.url }}" target="_blank">{{ site.url }}</a></p>
+        <p><strong>Site ajouté par : </strong>{{ site.user.firstName }} {{ site.user.lastName }}</p>
+        <p><strong>Site ajouté le : </strong>{{ site.createdAt | date("d/m/Y à H:i:s")}}</p>
+        <p><strong>Site modifié le : </strong>{{ site.updatedAt | date("d/m/Y à H:i:s")}}</p>
+    </div>
+
+    <div class="col-md-9">
+        <h4>Nombre de plugins : {{ plugins|length}}</h4>
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered mydatatable" style="width: 100%">
+                <thead>
+                    <tr>
+                    <th>Nom</th>
+                    <th>Version</th>
+                    <th>Actif</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for plugin in plugins %}
+                    <tr>
+                        <th>{{ plugin.name }}</th>
+                        <td>{{ plugin.version }}</td>
+                        <td class="text-center">{{ (plugin.active) ? '<span class="text-success">&check;</span>' : '<span class="text-danger">&cross;</span>' }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>   
+{% endblock %}
