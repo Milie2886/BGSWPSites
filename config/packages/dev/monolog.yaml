@@ -4,7 +4,7 @@ monolog:
             type: stream
             path: "%kernel.logs_dir%/%kernel.environment%.log"
             level: debug
-            channels: ["!event"]
+            channels: ["!event", "!security", "!request"]
         # uncomment to get logging in your browser
         # you may have to allow bigger header sizes in your Web server configuration
         #firephp:
@@ -13,6 +13,18 @@ monolog:
         #chromephp:
         #    type: chromephp
         #    level: info
+        security_logging:
+            type: rotating_file
+            max_files: 10
+            path: "%kernel.logs_dir%/%kernel.environment%.security.log"
+            level: info
+            channels: ['security']
+        site_logging:
+            type: rotating_file
+            max_files: 10
+            path: "%kernel.logs_dir%/%kernel.environment%.site.log"
+            level: debug
+            channels: ['request']
         console:
             type: console
             process_psr_3_messages: false

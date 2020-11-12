@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\SiteRepository;
 use App\Entity\Traits\Timestampable;
@@ -45,6 +47,18 @@ class Site
      */
     private $user;
 
+    /**
+     * @ORM\OneToMany(targetEntity=History::class, mappedBy="site")
+     */
+    private $histories;
+
+
+    public function __construct()
+    {
+        $this->actualVersionComponents = new ArrayCollection();
+        $this->histories = new ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -85,4 +99,35 @@ class Site
 
         return $this;
     }
+
+    /**
+     * @return Collection|History[]
+     */
+    public function getHistories(): Collection
+    {
+        return $this->histories;
+    }
+
+    public function addHistory(History $history): self
+    {
+        if (!$this->histories->contains($history)) {
+            $this->histories[] = $history;
+            $history->setSite($this);
+        }
+
+        return $this;
+    }
+
+    public function removeHistory(History $history): self
+    {
+        if ($this->histories->removeElement($history)) {
+            // set the owning side to null (unless already changed)
+            if ($history->getSite() === $this) {
+                $history->setSite(null);
+            }
+        }
+
+        return $this;
+    }
+
 }

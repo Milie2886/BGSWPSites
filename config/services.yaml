@@ -29,3 +29,12 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+    App\Controller\SecurityController:
+        arguments:
+            $logger: '@monolog.logger.security'
+    App\Security\LoginFormAuthenticator:
+        arguments:
+            $logger: '@monolog.logger.security'
+    App\Controller\SitesController:
+        arguments:
+            $logger: '@monolog.logger.request'
