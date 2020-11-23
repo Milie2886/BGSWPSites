@@ -7,6 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\UrlType;
 
 class SiteType extends AbstractType
 {
@@ -18,7 +19,7 @@ class SiteType extends AbstractType
                     'autofocus' => true
                 ]
             ])
-            ->add('url')
+            ->add('url', UrlType::class)
         ;
     }
 

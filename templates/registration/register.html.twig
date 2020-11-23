@@ -3,6 +3,7 @@
 {% block title 'Inscription' %}
 
 {% block body %}
+<main role="main" class="container">
     <div class="row">
         <div class="col-md-6 mx-auto">
             {% for flashError in app.flashes('verify_email_error') %}
@@ -37,4 +38,5 @@
                 {{ form_end(registrationForm) }}
         </div>
     </div>
+</main>
 {% endblock %}

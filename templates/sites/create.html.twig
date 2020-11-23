@@ -3,6 +3,7 @@
 {% block title 'Nouveau site' %}
 
 {% block body %}
+<main role="main" class="container">
     <div class="row">
         <div class="col-md-6 mx-auto">
             <h1>Ajouter un site</h1>
@@ -10,5 +11,5 @@
             {{ include('sites/_form.html.twig', {'submitButtonText': 'Ajouter'}) }}
         </div>
     </div>
-
+</main>
 {% endblock %}

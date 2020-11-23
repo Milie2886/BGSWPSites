@@ -21,15 +21,15 @@ final class Version20201029151813 extends AbstractMigration
     {
         // this up() migration is auto-generated, please modify it to your needs
         $this->addSql('ALTER TABLE sites ADD user_id INT NOT NULL');
-        $this->addSql('ALTER TABLE sites ADD CONSTRAINT FK_BC00AA63A76ED395 FOREIGN KEY (user_id) REFERENCES users (id)');
-        $this->addSql('CREATE INDEX IDX_BC00AA63A76ED395 ON sites (user_id)');
+        $this->addSql('ALTER TABLE sites ADD CONSTRAINT FK_users FOREIGN KEY (user_id) REFERENCES users (id)');
+        $this->addSql('CREATE INDEX IDX_users ON sites (user_id)');
     }
 
     public function down(Schema $schema) : void
     {
         // this down() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE sites DROP FOREIGN KEY FK_BC00AA63A76ED395');
-        $this->addSql('DROP INDEX IDX_BC00AA63A76ED395 ON sites');
+        $this->addSql('ALTER TABLE sites DROP FOREIGN KEY FK_users');
+        $this->addSql('DROP INDEX IDX_users ON sites');
         $this->addSql('ALTER TABLE sites DROP user_id');
     }
 }

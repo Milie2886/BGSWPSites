@@ -21,14 +21,14 @@ final class Version20201104093236 extends AbstractMigration
     {
         // this up() migration is auto-generated, please modify it to your needs
         $this->addSql('ALTER TABLE history ADD site_id INT DEFAULT NULL');
-        $this->addSql('ALTER TABLE history ADD CONSTRAINT FK_27BA704BF6BD1646 FOREIGN KEY (site_id) REFERENCES sites (id)');
+        $this->addSql('ALTER TABLE history ADD CONSTRAINT FK_sites FOREIGN KEY (site_id) REFERENCES sites (id)');
         $this->addSql('CREATE INDEX IDX_27BA704BF6BD1646 ON history (site_id)');
     }
 
     public function down(Schema $schema) : void
     {
         // this down() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE history DROP FOREIGN KEY FK_27BA704BF6BD1646');
+        $this->addSql('ALTER TABLE history DROP FOREIGN KEY FK_sites');
         $this->addSql('DROP INDEX IDX_27BA704BF6BD1646 ON history');
         $this->addSql('ALTER TABLE history DROP site_id');
     }

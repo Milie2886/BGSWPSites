@@ -3,6 +3,7 @@
 {% block title 'Edit site #' ~ site.id %}
 
 {% block body %}
+<main role="main" class="container">
     <div class="row">
         <div class="col-md-6 mx-auto">
             <h1>Edit site #{{ site.id }}</h1>
@@ -10,4 +11,5 @@
             {{ include('sites/_form.html.twig', {'submitButtonText': 'Enregistrer'}) }}
         </div>
     </div>
+</main>
 {% endblock %}

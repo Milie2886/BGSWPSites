@@ -3,12 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Site;
-use App\Entity\Types;
 use App\Form\SiteType;
 use App\Entity\History;
 use Psr\Log\LoggerInterface;
 use App\Repository\SiteRepository;
-use App\Repository\TypesRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -35,6 +33,7 @@ class SitesController extends AbstractController
      */
     public function index(SiteRepository $siteRepository): Response
     {
+        
         // je prend les sites en base et je les affiche
         $this->logger->info('Récupération des sites, affichage A-Z');
         $sites = $siteRepository->findBy([], ['name' => 'ASC']);
@@ -83,10 +82,8 @@ class SitesController extends AbstractController
      * @Route("/sites/{id<[0-9]+>}", name="app_sites_show", methods="GET")
      */
 
-    public function show(EntityManagerInterface $em,TypesRepository $typesRepo, HttpClientInterface $httpClient, Site $site, SiteRepository $siteRepository): Response
+    public function show(EntityManagerInterface $em, HttpClientInterface $httpClient, Site $site): Response
     {
-        //Je récupère les datas de la table Types
-        $RecommendedVersion = $typesRepo->findAll();
         //Je récupère le contenu du champs url de la table Site
         $url = $site->getUrl();
         //Je tente d'intérroger la route que j'ai créé via le plugin "Etat Actuel du site"
@@ -122,13 +119,10 @@ class SitesController extends AbstractController
             return $this->render('sites/show.html.twig', [
                 'plugins' => $plugins,
                 'site' => $site,
-                'apiComponent' => $component,
-                'wordpress' => $RecommendedVersion[0],
-                'php' => $RecommendedVersion[1],
-                'mySql' => $RecommendedVersion[2]
+                'apiComponent' => $component
             ]);
         }
-    // $logger->Debug("je boucle sur les plugins");
+    
     }
     //------------------Route pour éditer un site------------------------------
     //On utilise le verbe HTTP PUT pour la modification des datas

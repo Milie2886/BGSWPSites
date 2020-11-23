@@ -3,13 +3,12 @@
 {% block title 'BGS\' WP Sites' %}
 
 {% block body %}
-<h1 class="text-center"><u>Mes sites WordPress  </u></h1></br>
+<main role="main" class="container">
+<h1 class="text-center"><u>Nos sites WordPress  </u></h1></br>
     {% if sites|length > 0 %}
         {{ include('sites/_Tableau.html.twig') }}
     {% else %}
         <p>Désolée, aucun site à afficher! Cliquez <a href="{{ path('app_sites_create') }}">ici </a>pour ajouter votre premier site</p>
     {% endif %}
-    <div class="row">
-        <a href="{{ path('update') }}" class="btn btn-info btn-block m-5" >Mettre à jour</a>
-    </div>  
+</main>
 {% endblock %}
