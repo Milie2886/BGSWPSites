@@ -163,7 +163,7 @@ class SitesController extends AbstractController
     public function delete(Request $request, Site $site, EntityManagerInterface $em): Response
     {
         //Je vérifie que le site à supprimer est bien valide grace au token CSRF. Si oui, je supprime le site
-        if ($this->isCsrfTokenValid('site_deletion_'. $site->getId(), $request->request->get('csrf_token'))) {
+        if ($this->isCsrfTokenValid('site_deletion_' . $site->getId(), $request->request->get('csrf_token'))) {
             $em->remove($site);
             $em->flush();
             $this->logger->info($site->getName() .' supprimé!!');
