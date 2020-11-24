@@ -10,7 +10,7 @@ html, body {
 .alert-success {
     background-color:rgb(80, 255, 168);
 }
-.alert-danger {
+.alert-error {
     background-color: red;
 }
 .alert-info {

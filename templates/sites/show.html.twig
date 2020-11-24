@@ -10,7 +10,7 @@
         <p><strong>Nombre d'utilisateurs : </strong>{{ apiComponent.users }}</p>
         {% if apiComponent.wordpress_version < apiComponent.recommended_wordpress_version %}
             <strong>Version WP : </strong>
-            <p class="text-red">{{ apiComponent.wordpress_version }}<a class="text-dark"> => </a><a class="text-success" href="{{ site.url }}/wp-admin" target="_blank">{{ apiComponent.recommended_wordpress_version }}</a></p>
+            <p class="text-red">{{ apiComponent.wordpress_version }}<em class="text-dark"> => </em><a class="text-success" href="{{ site.url }}/wp-admin" target="_blank">{{ apiComponent.recommended_wordpress_version }}</a></p>
         {% else %}
             <strong>Version WP : </strong>
             <p class="text-success">{{ apiComponent.wordpress_version }}</p>

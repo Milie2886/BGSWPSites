@@ -13,9 +13,9 @@
             <td><a href="{{ path('app_sites_show', {id: site.id}) }}">{{ site.name }}</a></td>
             <td>{{ site.url }}</td>
             <td class="text-center d-flex justify-content-around">
-                <a href="{{ path('app_sites_edit', {id: site.id}) }}" class="btn btn-primary btn-md">&#128393; Editer</a>
+                <a href="{{ path('app_sites_edit', {id: site.id}) }}" class="btn btn-info btn-md">&#128393; Editer</a>
                 <!--Afin de récupérer la méthode DELETE, on doit créer un bouton de formulaire et y assigner la méthode cachée DELETE-->
-                <a href="#" onclick="event.preventDefault(); confirm('Etes-vous vraiment sûr?') && document.getElementById('js-site-delete-form-{{ site.id }}').submit();" class="btn btn-danger btn-md">&cross; Supprimer</a>
+                <a href="#" onclick="event.preventDefault(); confirm('Etes-vous vraiment sûr?') && document.getElementById('js-site-delete-form-{{ site.id }}').submit();" class="btn btn-primary btn-md">&cross; Supprimer</a>
 
                 <form id="js-site-delete-form-{{ site.id }}" action="{{ path('app_sites_delete', {id:site.id}) }}" method="post" style="display: none;" class="justify-content-center">
                     <input type="hidden" name="csrf_token" value="{{ csrf_token('site_deletion_' ~ site.id) }}">
