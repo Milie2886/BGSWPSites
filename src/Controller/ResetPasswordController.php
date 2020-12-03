@@ -39,6 +39,12 @@ class ResetPasswordController extends AbstractController
      */
     public function request(Request $request, MailerInterface $mailer): Response
     {
+        //On vérifie d'abord si l'utilisateur est connecté, on affiche un message flash si tel est le cas et on le redirige vers la page d'accueil
+        if ($this->getUser()) {
+            $this->addFlash('info', 'Vous êtes déjà connecté(e)!');
+
+            return $this->redirectToRoute('app_home');
+        }
         $form = $this->createForm(ResetPasswordRequestFormType::class);
         $form->handleRequest($request);
 
