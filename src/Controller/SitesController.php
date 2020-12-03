@@ -49,7 +49,6 @@ class SitesController extends AbstractController
      */
     public function create(Request $request, EntityManagerInterface $em): Response
     {
-        
         //On créé une variable qui contient le schema de notre entité Site
         $site = new Site;
         //on construit notre formulaire grace a form builder, le formulaire ayant été créé avec make:form, il récupère la liste des champs de la table (présent dans Form/SiteType.php)
@@ -69,8 +68,6 @@ class SitesController extends AbstractController
             //à la validation, on est redirigé vers la home
             return $this->redirectToRoute('app_home');
         }
-        
-
         //on passe en parametre de notre twig le form qu'on vient de créer en n'oubliant pas createView car symfony attend un objet de type form view
         return $this->render('sites/create.html.twig', [
             'form' => $form->createView()
@@ -112,20 +109,17 @@ class SitesController extends AbstractController
         //J'instancie une variable plugins qui récupère le tableau des plugins présent dans l'API
         $plugins = $arrayResp[0]["plugins"];
         //J'instancie une variable component pour récupérer seulement les infos du CORE
-        $component = $arrayResp[0];
-        //Je liste les plugins grâce à la boucle foreach
-        foreach($plugins as $plugin){
+        $component = $arrayResp[0];        
             //Je renomme mes variable afin de pouvoir les utiliser dans mon template
             return $this->render('sites/show.html.twig', [
                 'plugins' => $plugins,
                 'site' => $site,
                 'apiComponent' => $component
             ]);
-        }
-    
     }
     //------------------Route pour éditer un site------------------------------
     //On utilise le verbe HTTP PUT pour la modification des datas
+    //On utilise un pattern pour indiquer que la chaine de caractères présente dans le chemin sera l'ID et qu'il s'agit d'un chiffre.
     /**
      * @Route("/sites/{id<[0-9]+>}/edit", name="app_sites_edit", methods={"GET", "PUT"})
      */

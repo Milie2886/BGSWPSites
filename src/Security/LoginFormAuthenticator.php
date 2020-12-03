@@ -41,13 +41,13 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
         $this->passwordEncoder = $passwordEncoder;
         $this->logger = $logger;
     }
-
+    // methode booléenne qui permet de vérifier si l'authenticator support la requête (POST), si false, on skip, si true, on passe à la méthode getCredential
     public function supports(Request $request)
     {
         return self::LOGIN_ROUTE === $request->attributes->get('_route')
             && $request->isMethod('POST');
     }
-
+    // méthode qui permet de récupérer les credentials (identifiants de connexion) depuis la requête et de les retourner sous forme de tableau associatif
     public function getCredentials(Request $request)
     {
         $credentials = [
@@ -62,27 +62,30 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
         );
 
         return $credentials;
+        // les éléments retournés par getCredentials sont passés à getUser
     }
-
+    //Cette méthode va chercher l'utilisateur correspondant au credentials récupérés
     public function getUser($credentials, UserProviderInterface $userProvider)
     {
+        //On valide tout d'abord que le token est valide
         $token = new CsrfToken('authenticate', $credentials['csrf_token']);
+        //S'il n'est pas valide on lève une exception
         if (!$this->csrfTokenManager->isTokenValid($token)) {
             throw new InvalidCsrfTokenException();
         }
-
+        //Sinon on va chercher dans la table User, on cherche l'email correspondant au mail récupéré dans les crédential
         $user = $this->entityManager->getRepository(User::class)->findOneBy(['email' => $credentials['email']]);
-
+        //Si l'email trouvées ne correspond pas à ce qui est présent dans la table alors on lève une exception
         if (!$user) {
-            // fail authentication with a custom error
+            //J'ai mis un message vague pour éviter d'indiquer à un hacker que l'email existe mais mauvais mdp...
             throw new CustomUserMessageAuthenticationException('Email ou mot de passe invalide');
         }
-
         return $user;
     }
-
+    //Cette méthode vérifie le mot de passe entré par l'utilisateur ($credential) et ce qui est retourné par getUser
     public function checkCredentials($credentials, UserInterface $user)
     {
+        //Si en décodant le mot passe, on voit qu'il n'est pas valide alors on lève une exception (algorithm défini dans security.yaml)
         if (!$this->passwordEncoder->isPasswordValid($user, $credentials['password'])) {
             throw new CustomUserMessageAuthenticationException('Erreur de saisie, veuillez recommencer!');
         };
@@ -96,11 +99,13 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
     {
         return $credentials['password'];
     }
-
-    public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $providerKey)
+    //Si l'authentification est un succès, on appelle la méthode suivante
+    public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $providerKey)//providerKey = firewall défini dans security.yaml
     {
         $this->logger->info($request->request->get('email').' est connecté!');
+        //
         $request->getSession()->getFlashBag()->add('success', 'Connexion réussie! Bienvenue '. $token->getUser()->getFirstName().'!');
+        //si le chemin demandé est utilisé par un utilisateur non connecté, alors il est redirigé vers la page de connexion, se connecte et accède au chemin demandé
         if ($targetPath = $this->getTargetPath($request->getSession(), $providerKey)) {
             return new RedirectResponse($targetPath);
         }

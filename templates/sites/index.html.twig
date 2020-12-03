@@ -8,7 +8,7 @@
     {% if sites|length > 0 %}
         {{ include('sites/_Tableau.html.twig') }}
     {% else %}
-        <p>Désolée, aucun site à afficher! Cliquez <a href="{{ path('app_sites_create') }}">ici </a>pour ajouter votre premier site</p>
+        <p>Désolé, aucun site à afficher! Cliquez <a href="{{ path('app_sites_create') }}">ici </a>pour ajouter votre premier site!</p>
     {% endif %}
 </main>
 {% endblock %}

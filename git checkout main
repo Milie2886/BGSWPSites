@@ -1,0 +1,53 @@
+[33mcommit e09eddf797e6bffec4abc10f685a433596500e18[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: Emilie Gregory <emiliegregory@hotmail.com>
+Date:   Mon Nov 23 15:52:07 2020 +0100
+
+    modification de la page 404
+
+[33mcommit a4332e1346e97e320e3ec75f6d8b70263341019d[m
+Author: Emilie Gregory <emiliegregory@hotmail.com>
+Date:   Mon Nov 23 13:55:12 2020 +0100
+
+    modification texte sous le tableau + ajout contrainte CSRF sur bouton supprimer avec lien site.id
+
+[33mcommit af201590662cd8e3be6cef643431786f13e1bce5[m
+Author: Emilie Gregory <emiliegregory@hotmail.com>
+Date:   Mon Nov 23 11:33:12 2020 +0100
+
+    use post method for logout and add CSRF token
+
+[33mcommit 197832d8509f80e98a477789181140a0086a1024[m
+Author: Emilie Gregory <emiliegregory@hotmail.com>
+Date:   Mon Nov 23 10:10:10 2020 +0100
+
+    modification relation site-history et explicit class pour les formulaires
+
+[33mcommit 2c24e7b7785ef696c2b78430265ab4bd52bd7989[m
+Author: Emilie Gregory <emiliegregory@hotmail.com>
+Date:   Thu Nov 12 12:23:10 2020 +0100
+
+    modification nav-bar, logo WP visible sur toutes les pages
+
+[33mcommit 3c49b04efcede0e97b6fc38b1e4dc2a62eaa4461[m[33m ([m[1;31morigin/master[m[33m, [m[1;32mmaster[m[33m)[m
+Author: Emilie Gregory <emiliegregory@hotmail.com>
+Date:   Thu Nov 12 11:34:32 2020 +0100
+
+    suppression table log
+
+[33mcommit 83da71b2d0ba7e7ea5013a2fca400d027f7c76cc[m[33m ([m[1;31morigin/ajout-tables[m[33m, [m[1;32majout-tables[m[33m)[m
+Author: Emilie Gregory <emiliegregory@hotmail.com>
+Date:   Thu Nov 12 11:23:42 2020 +0100
+
+    Ajout des logs, ajout de la table history
+
+[33mcommit 58582288f0cf18aede93a634c9b79b05e3ba57c4[m
+Author: Emilie Gregory <emiliegregory@hotmail.com>
+Date:   Tue Nov 3 09:26:43 2020 +0100
+
+    first commit projet v2
+
+[33mcommit 555d6768c92572e5b13e1d68979d374d8e76590e[m
+Author: Milie2886 <emiliegregory@hotmail.com>
+Date:   Wed Oct 28 13:57:58 2020 +0100
+
+    Add initial set of files

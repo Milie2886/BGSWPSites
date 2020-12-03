@@ -1,12 +1,12 @@
 {% extends 'layouts/base.html.twig' %}
 
-{% block title 'Edit site #' ~ site.id %}
+{% block title 'Edit site #' ~ site.name %}
 
 {% block body %}
 <main role="main" class="container">
     <div class="row">
         <div class="col-md-6 mx-auto">
-            <h1>Edit site #{{ site.id }}</h1>
+            <h1>Edit site #{{ site.name }}</h1>
             <!--Ici on charge notre formulaire qu'on a isolé pour éviter les répétitions-->
             {{ include('sites/_form.html.twig', {'submitButtonText': 'Enregistrer'}) }}
         </div>
