@@ -1,0 +1,20 @@
+{% extends 'layouts/base.html.twig' %}
+
+{% block title 'Mon compte' %}
+
+{% block body %}
+<div class="row">
+    <div class="col-md-6 mx-auto text-center">
+        <h1 class="my-5">Mon compte</h1>
+
+        <img src="{{ app.user.gravatar }}" alt="Avatar de {{ app.user.firstName }}" class="shadow rounded-circle">
+        
+
+        <p class="mt-5 lead">{{ app.user.Email }}</p>
+        <h2>{{ app.user.firstName }} {{ app.user.lastName }}</h2>
+        <p>
+            <a href="">Modifier mon compte</a> | <a href="">Modifier mon mot de passe</a>
+        </p>
+    </div>
+</div>
+{% endblock %}
