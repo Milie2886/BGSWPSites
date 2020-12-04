@@ -206,7 +206,7 @@ class User implements UserInterface
     }
     public function gravatar(?int $size = 200) 
     {
-        return sprintf('https://www.gravatar.com/avatar/%s/?s=%d', md5(strtolower(trim($this->getEmail()))) , $size);
+        return sprintf('https://www.gravatar.com/avatar/%s?s=%d', md5(strtolower(trim($this->getEmail()))) , $size);
     }
 
     public function isVerified(): bool

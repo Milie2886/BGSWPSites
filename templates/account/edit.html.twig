@@ -1,0 +1,30 @@
+{% extends 'layouts/base.html.twig' %}
+
+{% block title 'Modifier mon profil' %}
+
+{% block body %}
+<main role="main" class="container">
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            <h1 class="my-5 text-center">Modifier mon profil</h1>
+            {{ form_start(form) }}
+                <div class="row">
+                    <div class="col-md-6">
+                        {{ form_row(form.firstName, {
+                    label: 'Prénom'
+                }) }}
+                    </div>
+                    <div class="col-md-6">
+                        {{ form_row(form.lastName, {
+                    label: 'Nom'
+                }) }}
+                    </div>
+                </div>
+                {# On peut également mettre form_rest(form) qui va afficher tous les formulaires restants #}
+                {{ form_row(form.email) }}
+                <button type="submit" class="btn btn-primary btn-lg btn-block">Valider les modifications</button>
+            {{ form_end(form) }}
+        </div>
+    </div>
+</main>
+{% endblock %}
