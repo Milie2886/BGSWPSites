@@ -8,24 +8,34 @@
         <h2>{{ site.name }}</h2>
         <p><strong>Url : </strong><a class="text-break" href="{{ site.url }}" target="_blank">{{ site.url }}</a></p>
         <p><strong>Nombre d'utilisateurs : </strong>{{ apiComponent.users }}</p>
+
         {% if apiComponent.wordpress_version < apiComponent.recommended_wordpress_version %}
             <strong>Version WP : </strong>
-            <p class="text-red">{{ apiComponent.wordpress_version }}<em class="text-dark"> => </em><a class="text-success" href="{{ site.url }}/wp-admin" target="_blank">{{ apiComponent.recommended_wordpress_version }}</a></p>
+            <p class="text-red"><strong>{{ apiComponent.wordpress_version }}</strong>
+            <em class="text-dark"> => </em>
+            <a class="text-success" href="{{ site.url }}/wp-admin" target="_blank">{{ apiComponent.recommended_wordpress_version }}</a></p>
         {% else %}
             <strong>Version WP : </strong>
             <p class="text-success">{{ apiComponent.wordpress_version }}</p>
         {% endif %}
+
         {% if apiComponent.php_version < apiComponent.recommended_php_version %}
             <strong>Version PHP : </strong>
-            <p class="text-red">{{ apiComponent.php_version }}<a class="text-dark"> => <a class="text-success" href=>{{ apiComponent.recommended_php_version }}</a></p>
+            <p class="text-red">
+            <strong>{{ apiComponent.php_version }}</strong>
+            <em class="text-dark"> => </em>
+            <a class="text-success" href="{{ site.url }}/wp-admin" target="_blank">{{ apiComponent.recommended_php_version }}</a></p>
         {% else %}
             <strong>Version PHP : </strong>
             <p class="text-success">{{ apiComponent.php_version }}</p>
         {% endif %}
+
         {% if apiComponent.mySql_version < apiComponent.recommended_mysql_version %}
             <strong>Version MySQL : </strong>
             <p class="text-red">
-            ({{ apiComponent.mySql_version }}<a class="text-dark"> => <a class="text-success"href="http://localhost/wp/vversus.g31c.com/wp-admin/" target="_blank">{{ apiComponent.recommended_mysql_version }}</a>)</p>
+            <strong>{{ apiComponent.mySql_version }}</strong>
+            <em class="text-dark"> =></em>
+            <a class="text-success"href="{{ site.url }}/wp-admin" target="_blank">{{ apiComponent.recommended_mysql_version }}</a>)</p>
         {% else %}
             <strong>Version MySQL : </strong>
             <p class="text-success">{{ apiComponent.mySql_version }}</p>
@@ -60,5 +70,5 @@
             </table>
         </div>
     </div>
-</div>   
+</div>
 {% endblock %}

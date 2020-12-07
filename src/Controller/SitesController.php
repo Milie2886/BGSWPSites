@@ -49,29 +49,35 @@ class SitesController extends AbstractController
      */
     public function create(Request $request, EntityManagerInterface $em): Response
     {
-        //On créé une variable qui contient le schema de notre entité Site
-        $site = new Site;
-        //on construit notre formulaire grace a form builder, le formulaire ayant été créé avec make:form, il récupère la liste des champs de la table (présent dans Form/SiteType.php)
-        $form = $this->createForm(SiteType::class, $site);
-        //On demande à Request de gérer notre formulaire (il va récupérer les données saisies)
-        $form->handleRequest($request);
-
-        //On emet une condition, si notre formulaire est soumis et est valide alors on créé notre site
-        if ($form->isSubmitted() && $form->isValid()) {
-            $site->setUser($this->getUser());
-            $em->persist($site);
-            $em->flush();
-            $this->logger->info('création du site : '. $site->getName());
-
-            //Pour ajouter un message flash à la création : 
-            $this->addFlash('success', 'Site ajouté avec succès!!');
-            //à la validation, on est redirigé vers la home
-            return $this->redirectToRoute('app_home');
+        if ($this->getUser()) {
+            
+            //On créé une variable qui contient le schema de notre entité Site
+            $site = new Site;
+            //on construit notre formulaire grace a form builder, le formulaire ayant été créé avec make:form, il récupère la liste des champs de la table (présent dans Form/SiteType.php)
+            $form = $this->createForm(SiteType::class, $site);
+            //On demande à Request de gérer notre formulaire (il va récupérer les données saisies)
+            $form->handleRequest($request);
+    
+            //On emet une condition, si notre formulaire est soumis et est valide alors on créé notre site
+            if ($form->isSubmitted() && $form->isValid()) {
+                $site->setUser($this->getUser());
+                $em->persist($site);
+                $em->flush();
+                $this->logger->info('création du site : '. $site->getName());
+    
+                //Pour ajouter un message flash à la création : 
+                $this->addFlash('success', 'Site ajouté avec succès!!');
+                //à la validation, on est redirigé vers la home
+                return $this->redirectToRoute('app_home');
+            }
+            //on passe en parametre de notre twig le form qu'on vient de créer en n'oubliant pas createView car symfony attend un objet de type form view
+            return $this->render('sites/create.html.twig', [
+                'form' => $form->createView()
+            ]);
+        } else {
+            $this->addFlash('info', 'Vous devez être connecté pour pouvoir ajouter un site');
+            return $this->redirectToRoute('app_login');
         }
-        //on passe en parametre de notre twig le form qu'on vient de créer en n'oubliant pas createView car symfony attend un objet de type form view
-        return $this->render('sites/create.html.twig', [
-            'form' => $form->createView()
-        ]);
     }
     //----------------Route pour voir le détail de chaque site----------------
     //On indique que l'id est obligatoirement un nombre
